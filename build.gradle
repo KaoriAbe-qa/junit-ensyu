@@ -1,0 +1,42 @@
+plugins {
+  id 'java'
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  // Junit 5 を導入
+  // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+
+  // Mockito 3 を導入
+  // https://mvnrepository.com/artifact/org.mockito/mockito-core
+  testImplementation 'org.mockito:mockito-core:3.6.0'
+
+  // Mockito による JUnit 5 Extension ライブラリを導入
+  // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+  testImplementation 'org.mockito:mockito-junit-jupiter:3.6.0'
+  
+  // https://mvnrepository.com/artifact/javax.servlet/servlet-api
+  compileOnly group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+//  testImplementation group: 'javax.servlet', name: 'servlet-api', version: '2.5'
+
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+}
+
+test {
+  // JUnit platform を使う設定
+  useJUnitPlatform()
+
+  // テスト時の出力設定
+  testLogging {
+    // テスト時の標準出力と標準エラー出力を表示する
+    showStandardStreams true
+    // イベントを出力する (TestLogEvent)
+    events 'started', 'skipped', 'passed', 'failed'
+    // 例外発生時の出力設定 (TestExceptionFormat)
+    exceptionFormat 'full'
+  }
+}
