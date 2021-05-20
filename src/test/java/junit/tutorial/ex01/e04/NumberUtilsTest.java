@@ -33,7 +33,7 @@ class NumberUtilsTest {
 	//単語が増えても@CsvSourceでまとめて確認できる
 	@ParameterizedTest
 	@CsvSource({
-		"10, true"
+		"10"
 	})
 	void test1(int num) {
 		assertTrue(NumberUtils.isEven(num));
@@ -42,10 +42,20 @@ class NumberUtilsTest {
 	//単語が増えても@CsvSourceでまとめて確認できる
 	@ParameterizedTest
 	@CsvSource({
-		"7, false"
+		"7"
 	})
 	void test2(int num) {
 		assertFalse(NumberUtils.isEven(num));
+	}
+	
+	//まとめて記載Ver？
+	@ParameterizedTest
+	@CsvSource({
+		"true, 10",
+		"false, 7"
+	})
+	void test3(boolean ans, int num) {
+		assertEquals(ans, NumberUtils.isEven(num));
 	}
 
 }
